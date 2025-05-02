@@ -1,0 +1,70 @@
+/* Common CSS */
+.container {
+    margin: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .edit-faq-form {
+    margin: 20px;
+  }
+  
+  .edit-faq-form form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .edit-faq-form label {
+    margin-bottom: 10px;
+  }
+  
+  .edit-faq-form input,
+  .edit-faq-form textarea {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .edit-faq-form button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .edit-faq-form button:hover {
+    background-color: #45a049;
+  }
+  
+  .bg-blue-500 {
+    background-color: #4A90E2;
+  }
+  
+  .hover\:bg-blue-700:hover {
+    background-color: #357ABD;
+  }
+  
+  .text-white {
+    color: white;
+  }
+  
+  .font-bold {
+    font-weight: bold;
+  }
+  
+  .py-2 {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+  
+  .px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .rounded {
+    border-radius: 0.25rem;
+  }
+  
