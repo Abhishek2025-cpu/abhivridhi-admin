@@ -30,6 +30,7 @@ import Login from './login';
 import AllUsers from './AllUsers';
 import AllDrivers from './AllDrivers';
 import ShippingList from './ShippingList';
+import Complaints from './Complaints';
 
 
 
@@ -70,12 +71,13 @@ const SidebarLayout = () => {
                     <Route path="/truck-categories" element={<TruckCategories />} />
                     <Route path="/base-price" element={<BasePrice />} />
                     <Route path="/vechile-disc" element={<VehicleDescriptions />} />
-                    <Route path="/Shipping-types" element={<ShippingTypes />} />
+                    {/* <Route path="/Shipping-types" element={<ShippingTypes />} /> */}
                     <Route path="/Vehicle-Descriptions" element={<VehicleDescriptions />} />
                     <Route path="/Vehicle-Registration" element={<VehicleRegistration />} />
                     <Route path="/Categories" element={<Categories />} />
                     <Route path="/Contacted-Users" element={<ContactedUsers />} />
                     <Route path="/Clients" element={<Clients />} />
+                    <Route path="/complaints" element={<Complaints />} />
                     <Route path="/states" element={<States />} />
                     <Route path="/Areas" element={<Areas />} />
                     <Route path="/Addresses" element={<Addresses />} />

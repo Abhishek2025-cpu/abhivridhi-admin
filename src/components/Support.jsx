@@ -1,17 +1,18 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { Oval } from "react-loader-spinner";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import './SupportManager.css';
+
+const API_BASE = 'https://server1.pearl-developer.com/abhivriti/public/api';
 
 const Support = () => {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [newSupport, setNewSupport] = useState({
-    title: "",
-    description: "",
-    customer_support_number: "",
-    customer_support_email: "",
-  });
+  const [supportList, setSupportList] = useState([]);
+  const [formData, setFormData] = useState({ email: '', contact_no: '', messages: '' });
+  const [editId, setEditId] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [alert, setAlert] = useState({ show: false, msg: '', type: 'success' });
+  const [currentPage, setCurrentPage] = useState(1);
+  const rowsPerPage = 5;
 
   useEffect(() => {
     fetchSupportData();
@@ -19,119 +20,159 @@ const Support = () => {
 
   const fetchSupportData = async () => {
     try {
-      const response = await axios.get(
-        "https://server1.pearl-developer.com/abhivriti/public/api/admin/support"
-      );
-      setData(response.data.data || []);
-    } catch (error) {
-      setError("Error fetching support data.");
-      console.error("Error fetching support data:", error);
-    } finally {
-      setLoading(false);
+      const res = await axios.get(`${API_BASE}/app/get_support`);
+      setSupportList(res.data.reverse());
+    } catch {
+      showAlert('Failed to fetch data', 'error');
     }
+  };
+
+  const showAlert = (msg, type = 'success') => {
+    setAlert({ show: true, msg, type });
+    setTimeout(() => setAlert({ show: false, msg: '', type: 'success' }), 3000);
+  };
+
+  const handleSubmit = async () => {
+    const url = editId
+      ? `${API_BASE}/admin/update_support/${editId}`
+      : `${API_BASE}/app/add_support`;
+
+    try {
+      await axios.post(url, formData);
+      showAlert(editId ? 'Updated successfully' : 'Added successfully');
+      setFormData({ email: '', contact_no: '', messages: '' });
+      setEditId(null);
+      setShowModal(false);
+      fetchSupportData();
+    } catch {
+      showAlert('Submission failed', 'error');
+    }
+  };
+
+  const handleEdit = (item) => {
+    setFormData({ email: item.email, contact_no: item.contact_no, messages: item.messages });
+    setEditId(item.id);
+    setShowModal(true);
   };
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(
-        `https://server1.pearl-developer.com/abhivriti/public/api/admin/support/${id}`
-      );
-      setData(data.filter((item) => item.id !== id));
-    } catch (error) {
-      console.error("Error deleting support entry:", error);
+      await axios.get(`${API_BASE}/admin/delete_support/${id}`);
+      showAlert('Deleted successfully', 'info');
+      fetchSupportData();
+    } catch {
+      showAlert('Delete failed', 'error');
     }
   };
 
-  const handleAdd = async () => {
-    try {
-      const response = await axios.post(
-        "https://server1.pearl-developer.com/abhivriti/public/api/admin/support",
-        newSupport
-      );
-      setData([...data, response.data]);
-      setNewSupport({
-        title: "",
-        description: "",
-        customer_support_number: "",
-        customer_support_email: "",
-      });
-    } catch (error) {
-      console.error("Error adding support entry:", error);
-    }
-  };
+  const filteredList = supportList.filter(
+    (item) =>
+      item.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      item.contact_no.includes(searchTerm) ||
+      item.messages.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <Oval color="#4A90E2" height={50} width={50} />
-      </div>
-    );
-  }
+  const paginatedList = filteredList.slice(
+    (currentPage - 1) * rowsPerPage,
+    currentPage * rowsPerPage
+  );
 
-  if (error) {
-    return <div className="text-center text-red-500">{error}</div>;
-  }
+  const totalPages = Math.ceil(filteredList.length / rowsPerPage);
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-6 text-center">Support</h1>
+    <div className="support-container">
+      <h2>Support Manager</h2>
 
-      {/* Add New Support Button */}
-     {/* Add New Support Button */}
-<div className="mb-6 text-left">
-  <button
-    className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition"
-    onClick={handleAdd}
-  >
-    Add New Support
-  </button>
-</div>
+      <div className="toolbar">
+        <button onClick={() => { setFormData({ email: '', contact_no: '', messages: '' }); setEditId(null); setShowModal(true); }}>
+          + Add Support
+        </button>
+        <input
+          type="text"
+          placeholder="Search by email, number or message"
+          value={searchTerm}
+          onChange={(e) => { setSearchTerm(e.target.value); setCurrentPage(1); }}
+        />
+      </div>
 
+      <table className="support-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Email</th>
+            <th>Contact No</th>
+            <th>Message</th>
+            <th>Created At</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {paginatedList.map((item, index) => (
+            <tr key={item.id}>
+              <td>{(currentPage - 1) * rowsPerPage + index + 1}</td>
+              <td>{item.email}</td>
+              <td>{item.contact_no}</td>
+              <td>{item.messages}</td>
+              <td>{item.created_at}</td>
+              <td>
+                <button className="edit-btn" onClick={() => handleEdit(item)}>Edit</button>
+                <button className="delete-btn" onClick={() => handleDelete(item.id)}>Delete</button>
+              </td>
+            </tr>
+          ))}
+          {paginatedList.length === 0 && (
+            <tr>
+              <td colSpan="6">No data found.</td>
+            </tr>
+          )}
+        </tbody>
+      </table>
 
-      {/* Support Cards */}
-      <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
-        {data.map((item) => (
-          <div key={item.id} className="p-4 shadow-lg rounded-lg bg-gray-100">
-            <h2 className="text-lg font-bold text-blue-600">{item.title}</h2>
-            <p className="mt-2 text-gray-700">{item.description}</p>
-            <div className="mt-2">
-              <p className="text-sm text-gray-500">
-                <strong>Contact:</strong> {item.customer_support_number}
-              </p>
-              <p className="text-sm text-gray-500">
-                <strong>Email:</strong> {item.customer_support_email}
-              </p>
-              <p className="text-sm text-gray-500">
-                <strong>Abhivriti Number:</strong> {item.drive_with_porter_number}
-              </p>
-              <p className="text-sm text-gray-500">
-                <strong>Packer's Email:</strong> {item.packers_email}
-              </p>
-              <div className="mt-2">
-                <strong>Packer's Numbers:</strong>
-                <ul className="list-disc list-inside">
-                  {item.packers_numbers && item.packers_numbers.length > 0 ? (
-                    item.packers_numbers.map((number, numIndex) => (
-                      <li key={numIndex} className="text-gray-700">{number}</li>
-                    ))
-                  ) : (
-                    <li className="text-gray-500">No numbers available</li>
-                  )}
-                </ul>
-              </div>
-            </div>
-            {/* Delete Button */}
-            <div className="mt-4 text-right">
-              <button
-                className="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition"
-                onClick={() => handleDelete(item.id)}
-              >
-                Delete Support
-              </button>
-            </div>
-          </div>
+      <div className="pagination">
+        {[...Array(totalPages)].map((_, idx) => (
+          <button
+            key={idx}
+            className={currentPage === idx + 1 ? 'active' : ''}
+            onClick={() => setCurrentPage(idx + 1)}
+          >
+            {idx + 1}
+          </button>
         ))}
       </div>
+
+      {showModal && (
+        <div className="modal-backdrop">
+          <div className="modal">
+            <h3>{editId ? 'Edit Support' : 'Add Support'}</h3>
+            <input
+              type="email"
+              placeholder="Email"
+              value={formData.email}
+              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+            />
+            <input
+              type="text"
+              placeholder="Contact Number"
+              value={formData.contact_no}
+              onChange={(e) => setFormData({ ...formData, contact_no: e.target.value })}
+            />
+            <textarea
+              rows="4"
+              placeholder="Message"
+              value={formData.messages}
+              onChange={(e) => setFormData({ ...formData, messages: e.target.value })}
+            />
+            <div className="modal-actions">
+              <button className="cancel" onClick={() => setShowModal(false)}>Cancel</button>
+              <button className="submit" onClick={handleSubmit}>{editId ? 'Update' : 'Submit'}</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {alert.show && (
+        <div className={`alert ${alert.type}`}>{alert.msg}</div>
+      )}
     </div>
   );
 };

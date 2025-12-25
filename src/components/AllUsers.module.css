@@ -1,4 +1,4 @@
-/* DriverTable.css */
+/* AllUsers.module.css */
 
 /* --- General Container & Heading --- */
 .container {
@@ -21,41 +21,23 @@
 /* --- Search Bar --- */
 .searchBar {
   margin-bottom: 25px;
-  display: flex;
-  align-items: center;
-  gap: 10px; /* Space between icon and input */
-  padding: 8px 15px; /* Padding similar to inputs */
-  border: 1px solid #ced4da;
-  border-radius: 6px;
-  background-color: #fff;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-}
-
-.searchBar:focus-within { /* Style when any element inside gets focus */
-  border-color: #007bff;
-  box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
-}
-
-.searchIcon {
-  color: #6c757d;
-  font-size: 1.2rem;
 }
 
 .searchInput {
-  flex-grow: 1; /* Allows input to take up remaining space */
-  padding: 0; /* Remove default padding as it's handled by .searchBar */
-  border: none;
-  outline: none; /* Remove focus outline */
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ced4da;
+  border-radius: 6px;
   font-size: 1rem;
-  color: #495057;
-  background-color: transparent; /* Make background transparent */
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
-.searchInput::placeholder {
-  color: #adb5bd;
+.searchInput:focus {
+  border-color: #007bff;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
 }
-
 
 /* --- Table Styles --- */
 .tableContainer {
@@ -83,7 +65,6 @@
   position: sticky;
   top: 0;
   z-index: 10; /* Keep header sticky */
-  vertical-align: middle; /* Ensure content is vertically centered */
 }
 
 .table tbody tr {
@@ -109,34 +90,48 @@
   text-align: left;
 }
 
-/* First column (S.No) for better readability */
+/* First column (S.No) and last columns for better readability */
 .table th:first-child,
 .table td:first-child {
   text-align: center;
-  width: 80px; /* Smaller width for S.No */
+  width: 60px; /* Smaller width for S.No */
+}
+.table th:last-child,
+.table td:last-child {
+  text-align: center; /* Center align date */
+  width: 180px;
 }
 
+
 /* --- Filter in Header --- */
+.filterHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+  position: relative; /* Needed for positioning the icon */
+}
+
+.filterHeaderIcon {
+  margin-right: 5px;
+}
+
 .filterSelect {
   width: 100%;
-  padding: 5px 10px;
+  padding: 5px 10px; /* Adjusted padding */
   font-size: 0.9rem;
   border: 1px solid #ced4da;
   border-radius: 4px;
   background-color: #ffffff;
   color: #495057;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+  -webkit-appearance: none; /* Remove default arrow for Chrome/Safari */
+  -moz-appearance: none; /* Remove default arrow for Firefox */
+  appearance: none; /* Remove default arrow */
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
   background-repeat: no-repeat;
   background-position: right 0.75rem center;
   background-size: 0.65em 0.65em;
-  padding-right: 2rem;
-  box-sizing: border-box;
-  height: 35px; /* Fixed height for consistency */
-  line-height: 1.2;
-  /* Removed negative margins to avoid conflicts with default th padding */
+  padding-right: 2rem; /* Make space for custom arrow */
 }
 
 .filterSelect:focus {
@@ -145,7 +140,7 @@
   box-shadow: 0 0 0 0.15rem rgba(0, 123, 255, 0.25);
 }
 
-/* --- Badges for cell content (Example for Vehicle Type) --- */
+/* --- Badges for cell content --- */
 .badge {
   font-weight: 500;
   padding: 0.4em 0.7em;
@@ -154,7 +149,7 @@
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  white-space: nowrap;
+  white-space: nowrap; /* Prevent badge text from wrapping */
 }
 
 .badgeInfo { background-color: #17a2b8; color: white; }
@@ -166,12 +161,9 @@
 .badgeDangerSubtle { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
 
 
-/* --- Loading and No Data States --- */
-.loadingRow, .no-data {
+/* --- Loading and Error States --- */
+.loadingRow, .errorRow {
   text-align: center;
-  padding: 20px;
-  color: #6c757d;
-  font-style: italic;
 }
 
 .spinnerBorder {
@@ -183,8 +175,6 @@
   border-right-color: transparent;
   border-radius: 50%;
   animation: .75s linear infinite spinner-border;
-  margin-right: 10px;
-  color: #007bff;
 }
 
 @keyframes spinner-border {
@@ -197,7 +187,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
+  flex-wrap: wrap; /* Allow pagination to wrap on small screens */
   gap: 5px;
 }
 
@@ -238,7 +228,7 @@
   background-color: #007bff;
   border-color: #007bff;
   color: white;
-  pointer-events: none;
+  pointer-events: none; /* Disable click on active button */
 }
 
 .pageItem.disabled .pageButton {
