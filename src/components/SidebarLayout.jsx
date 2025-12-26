@@ -7,7 +7,7 @@ import TruckCategories from './TruckCategories';
 import BasePrice from './BasePrice';
 import VehicleDescriptions from './VehicleDescriptions';
 import VehicleRegistration from './VehicleRegistration';
-import ShippingTypes from './ShippingTypes';
+// import ShippingTypes from './ShippingTypes'; // COMMENTED OUT TO FIX "UNUSED" WARNING
 import Dashboard from './Dashboard';
 import Categories from './Categories';
 import ContactedUsers from './ContactedUsers';
@@ -31,8 +31,10 @@ import AllUsers from './AllUsers';
 import AllDrivers from './AllDrivers';
 import ShippingList from './ShippingList';
 import Complaints from './Complaints';
-
-
+import OpsDashboard from './OpsDashboard/OpsDashboard';
+import MarketingCoupons from './MarketingCoupons/MarketingCoupons';
+import DeliveryFailures from './DeliveryFailures/DeliveryFailures';
+import RiderDisputes from './RiderDisputes/RiderDisputes';
 
 const SidebarLayout = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -63,15 +65,18 @@ const SidebarLayout = () => {
                 <div className={`flex-1 p-6 ${isMenuOpen ? 'ml-64' : 'ml-0'} transition-all duration-300 ease-in-out`}>
                   <Routes>
                     <Route path="/Dashboard" element={<Dashboard />} />
-                    <Route path="/Near-by-store" element={<AddStore/>} />
+                    <Route path="/Near-by-store" element={<AddStore />} />
                     <Route path="/DeliveryPartners" element={<DeliveryPartners />} />
                     <Route path="/All-Users" element={<AllUsers />} />
-                    <Route path="/All-driver" element={<AllDrivers/>} />
-                    <Route path ="/Shipping" element={<ShippingList/>} />
+                    <Route path="/All-driver" element={<AllDrivers />} />
+                    <Route path="/Shipping" element={<ShippingList />} />
                     <Route path="/truck-categories" element={<TruckCategories />} />
                     <Route path="/base-price" element={<BasePrice />} />
                     <Route path="/vechile-disc" element={<VehicleDescriptions />} />
+                    
+                    {/* Keep this commented out until you need it */}
                     {/* <Route path="/Shipping-types" element={<ShippingTypes />} /> */}
+                    
                     <Route path="/Vehicle-Descriptions" element={<VehicleDescriptions />} />
                     <Route path="/Vehicle-Registration" element={<VehicleRegistration />} />
                     <Route path="/Categories" element={<Categories />} />
@@ -91,6 +96,13 @@ const SidebarLayout = () => {
                     <Route path="/Policy" element={<Policy />} />
                     <Route path="/ZeroTolerancePolicy" element={<ZeroTolerancePolicy />} />
                     <Route path="/Banners" element={<Banners />} />
+                    
+                    {/* UPDATED SYNTAX HERE */}
+                    <Route path="/ops-dashboard" element={<OpsDashboard />} />
+                     <Route path="/marketing-coupons" element={<MarketingCoupons />} />
+                     <Route path="/delivery-failures" element={<DeliveryFailures />} />
+                     <Route path="/rider-disputes" element={<RiderDisputes />} />
+                    
                   </Routes>
                 </div>
               </div>

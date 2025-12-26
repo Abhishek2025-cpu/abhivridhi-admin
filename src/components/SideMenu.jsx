@@ -17,35 +17,39 @@ import {
   FaBuilding,
   FaNewspaper,
   FaBloggerB,
-FaStore ,
-
+  FaStore,
   FaQuestionCircle,
   FaShieldAlt,
   FaHandsHelping,
   FaClipboard,
   FaExclamationTriangle,
   FaImage,
-  
   FaArrowLeft,
+  FaTags,
+  FaUndo,
+  FaGavel,
+  FaCogs
 } from "react-icons/fa";
-import logo from "../img/unnamed.png"; // Update with your actual logo path
+import logo from "../img/unnamed.png";
 
 const menuItems = [
   { path: "/Dashboard", label: "Dashboard", icon: <FaTachometerAlt /> },
-  {path: "/Near-by-store" , label: "Near by Store", icon: <FaStore />},
+  { path: "/ops-dashboard", label: "Ops & Resolution", icon: <FaCogs /> },
+  { path: "/marketing-coupons", label: "Marketing & Coupons", icon: <FaTags /> },
+  { path: "/delivery-failures", label: "Delivery Failures", icon: <FaUndo /> },
+  { path: "/rider-disputes", label: "Rider Disputes", icon: <FaGavel /> },
+  { path: "/Near-by-store" , label: "Near by Store", icon: <FaStore />},
   { path: "/DeliveryPartners", label: "Delivery Partners", icon: <FaTruck /> },
-  {path: "/All-Users", label: "All Users", icon: <FaUsers />},
-  {path: "/All-driver", label: "All Drivers", icon: <FaUsers />},
-  {path: "/Shipping", label: "Shipping", icon: <FaShippingFast />},  
-  
+  { path: "/All-Users", label: "All Users", icon: <FaUsers /> },
+  { path: "/All-driver", label: "All Drivers", icon: <FaUsers /> },
+  { path: "/Shipping", label: "Shipping", icon: <FaShippingFast /> },  
   { path: "/truck-categories", label: "Truck Categories", icon: <FaTruck /> },
   { path: "/base-price", label: "Base Price", icon: <FaMoneyBill /> },
   { path: "/vechile-disc", label: "Vehicle Description", icon: <FaCar /> },
-  // { path: "/Shipping-types", label: "Shipping Types", icon: <FaShippingFast /> },
   { path: "/Categories", label: "Categories", icon: <FaBoxes /> },
   { path: "/Contacted-Users", label: "Contacted Users", icon: <FaUsers /> },
   { path: "/Clients", label: "Clients", icon: <FaUserTie /> },
-  {path: "/complaints", label: "complaints", icon: <FaBoxes />},
+  { path: "/complaints", label: "complaints", icon: <FaBoxes /> },
   { path: "/States", label: "States", icon: <FaMapMarkedAlt /> },
   { path: "/Areas", label: "Areas", icon: <FaCity /> },
   { path: "/Addresses", label: "Addresses", icon: <FaHome /> },
@@ -74,13 +78,11 @@ const Sidebar = ({ isOpen, toggleMenu }) => {
       } transition-transform duration-300 ease-in-out bg-blue-700 text-white w-64 shadow-lg`}
     >
       <div className="p-6">
-        {/* Logo and Title */}
         <div className="flex items-center mb-6">
           <img src={logo} alt="Logo" className="w-12 h-12 mr-3" />
           <h1 className="text-xl font-bold">Abhivriti</h1>
         </div>
 
-        {/* Back Button */}
         <button
           onClick={toggleMenu}
           className="text-lg font-semibold bg-blue-800 hover:bg-blue-600 rounded-full p-2 mb-4 flex items-center"
@@ -88,7 +90,6 @@ const Sidebar = ({ isOpen, toggleMenu }) => {
           <FaArrowLeft className="mr-2" /> Back
         </button>
 
-        {/* Search Bar */}
         <div className="mb-4">
           <input
             type="text"
@@ -99,7 +100,6 @@ const Sidebar = ({ isOpen, toggleMenu }) => {
           />
         </div>
 
-        {/* Menu Items with Scrollbar */}
         <div style={{ height: "calc(100vh - 200px)", overflow: "hidden" }}>
           <PerfectScrollbar>
             <ul className="space-y-2">
@@ -118,7 +118,6 @@ const Sidebar = ({ isOpen, toggleMenu }) => {
           </PerfectScrollbar>
         </div>
 
-        {/* Footer */}
         <div className="mt-6 text-center text-sm">
           <p>&copy; 2025 Abhivriti. All Rights Reserved.</p>
         </div>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Oval } from "react-loader-spinner";
-import Modal from "react-modal";
+// Removed unused import: import Modal from "react-modal"; 
 
 const States = () => {
   const [data, setData] = useState([]);

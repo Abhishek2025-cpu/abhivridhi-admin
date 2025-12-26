@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
 import './SupportManager.css';
 
@@ -14,23 +14,26 @@ const Support = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const rowsPerPage = 5;
 
-  useEffect(() => {
-    fetchSupportData();
+  // 1. Wrapped showAlert in useCallback to prevent re-creation on every render
+  const showAlert = useCallback((msg, type = 'success') => {
+    setAlert({ show: true, msg, type });
+    setTimeout(() => setAlert({ show: false, msg: '', type: 'success' }), 3000);
   }, []);
 
-  const fetchSupportData = async () => {
+  // 2. Wrapped fetchSupportData in useCallback and added showAlert as dependency
+  const fetchSupportData = useCallback(async () => {
     try {
       const res = await axios.get(`${API_BASE}/app/get_support`);
       setSupportList(res.data.reverse());
     } catch {
       showAlert('Failed to fetch data', 'error');
     }
-  };
+  }, [showAlert]);
 
-  const showAlert = (msg, type = 'success') => {
-    setAlert({ show: true, msg, type });
-    setTimeout(() => setAlert({ show: false, msg: '', type: 'success' }), 3000);
-  };
+  // 3. Added fetchSupportData to useEffect dependency array
+  useEffect(() => {
+    fetchSupportData();
+  }, [fetchSupportData]);
 
   const handleSubmit = async () => {
     const url = editId
