@@ -10,7 +10,7 @@ const Services = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("https://server1.pearl-developer.com/abhivriti/public/api/admin/view-services");
+        const response = await axios.get("https://test.pearl-developer.com/abhivriti/public/api/admin/view-services");
         console.log("API response:", response);
 
         const services = response.data.services || [];

@@ -14,7 +14,7 @@ const Categories = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("https://server1.pearl-developer.com/abhivriti/public/api/admin/category");
+        const response = await axios.get("https://test.pearl-developer.com/abhivriti/public/api/admin/category");
         const categoryData = response.data.data || [];
         setData(categoryData);
       } catch (error) {

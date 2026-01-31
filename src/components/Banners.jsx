@@ -15,7 +15,7 @@ const Banners = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://server1.pearl-developer.com/abhivriti/public/api/admin/banner"
+          "https://test.pearl-developer.com/abhivriti/public/api/admin/banner"
         );
         console.log("API response:", response);
 

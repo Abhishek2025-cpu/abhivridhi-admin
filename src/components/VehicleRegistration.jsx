@@ -10,7 +10,7 @@ const VehicleRegistration = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("https://server1.pearl-developer.com/abhivriti/public/api/admin/vehicle-registration");
+        const response = await axios.get("https://test.pearl-developer.com/abhivriti/public/api/admin/vehicle-registration");
         console.log("API response:", response);
 
         const vehicles = response.data.data || [];

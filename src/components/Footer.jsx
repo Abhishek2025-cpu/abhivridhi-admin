@@ -10,7 +10,7 @@ const Footer = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("https://server1.pearl-developer.com/abhivriti/public/api/admin/footer");
+        const response = await axios.get("https://test.pearl-developer.com/abhivriti/public/api/admin/footer");
         console.log("API response:", response);
 
         const footerData = response.data.data || {};

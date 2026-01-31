@@ -10,7 +10,7 @@ const Users = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("https://server1.pearl-developer.com/abhivriti/public/api/admin/all-users");
+        const response = await axios.get("https://test.pearl-developer.com/abhivriti/public/api/admin/all-users");
         console.log("API response:", response);
 
         const userData = response.data.data || [];

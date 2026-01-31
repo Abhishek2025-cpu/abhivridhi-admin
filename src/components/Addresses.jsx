@@ -20,7 +20,7 @@ const Addresses = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "https://server1.pearl-developer.com/abhivriti/public/api/admin/addresses"
+        "https://test.pearl-developer.com/abhivriti/public/api/admin/addresses"
       );
       setData(response.data.data[0] || {});
     } catch (error) {

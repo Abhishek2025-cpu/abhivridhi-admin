@@ -21,7 +21,7 @@ const VehicleDescriptions = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://server1.pearl-developer.com/abhivriti/public/api/admin/vehicle-description"
+          "https://test.pearl-developer.com/abhivriti/public/api/admin/vehicle-description"
         );
         setData(response.data.data || []);
       } catch (error) {

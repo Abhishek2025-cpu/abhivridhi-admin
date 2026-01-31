@@ -8,7 +8,7 @@ const ZeroTolerancePolicy = () => {
 
   useEffect(() => {
     axios
-      .get("https://server1.pearl-developer.com/abhivriti/public/api/admin/zero-tolerance-policy")
+      .get("https://test.pearl-developer.com/abhivriti/public/api/admin/zero-tolerance-policy")
       .then((response) => {
         const { data } = response.data;
         setPolicies(data.policies);

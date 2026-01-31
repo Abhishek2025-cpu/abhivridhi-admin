@@ -15,7 +15,7 @@ const News = () => {
 
   const fetchNews = async () => {
     try {
-      const response = await axios.get("https://server1.pearl-developer.com/abhivriti/public/api/admin/news");
+      const response = await axios.get("https://test.pearl-developer.com/abhivriti/public/api/admin/news");
       setData(response.data.data || []);
     } catch (error) {
       setError("Error fetching news.");

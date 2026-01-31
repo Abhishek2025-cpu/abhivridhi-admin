@@ -14,7 +14,7 @@ const BasePrice = () => {
   useEffect(() => {
     const fetchBasePrice = async () => {
       try {
-        const response = await axios.get('https://server1.pearl-developer.com/abhivriti/public/api/admin/base-price');
+        const response = await axios.get('https://test.pearl-developer.com/abhivriti/public/api/app/admin/base-price');
         setBasePrice(response.data.data);
       } catch (err) {
         setError(err);
@@ -30,7 +30,7 @@ const BasePrice = () => {
     e.preventDefault();
     setSubmitting(true);
     try {
-      const response = await axios.post('https://server1.pearl-developer.com/abhivriti/public/api/app/admin/base-price', {
+      const response = await axios.post('https://test.pearl-developer.com/abhivriti/public/api/app/admin/base-price', {
         price_per_km: pricePerKm,
         price_per_kg: pricePerKg,
       });

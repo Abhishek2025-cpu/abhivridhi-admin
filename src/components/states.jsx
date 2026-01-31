@@ -13,7 +13,7 @@ const States = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("https://server1.pearl-developer.com/abhivriti/public/api/admin/state");
+        const response = await axios.get("https://test.pearl-developer.com/abhivriti/public/api/admin/state");
         console.log("API response:", response);
 
         const states = response.data.data || [];  // Access data correctly

@@ -10,7 +10,7 @@ const ContactedUsers = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("https://server1.pearl-developer.com/abhivriti/public/api/admin/get-contacted-users");
+        const response = await axios.get("https://test.pearl-developer.com/abhivriti/public/api/admin/get-contacted-users");
         const contactedUsers = response.data?.data || [];
         setData(contactedUsers);
       } catch (error) {

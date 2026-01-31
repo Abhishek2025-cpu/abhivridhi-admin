@@ -12,7 +12,7 @@ const DeliveryPartners = () => {
 
   useEffect(() => {
     axios
-      .get('https://server1.pearl-developer.com/abhivriti/public/api/admin/getDeliveryPartners')
+      .get('https://test.pearl-developer.com/abhivriti/public/api/admin/getDeliveryPartners')
       .then((response) => {
         setData(response.data.deliveryPartners[0]);
       })

@@ -10,7 +10,7 @@ const SocialMedia = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("https://server1.pearl-developer.com/abhivriti/public/api/admin/social-media");
+        const response = await axios.get("https://test.pearl-developer.com/abhivriti/public/api/admin/social-media");
         console.log("API response:", response);
 
         const socialMediaData = response.data.data || [];

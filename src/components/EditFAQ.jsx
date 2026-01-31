@@ -19,7 +19,7 @@ const EditFAQ = () => {
 
   const fetchFaqs = () => {
     axios
-      .get('https://server1.pearl-developer.com/abhivriti/public/api/admin/faq')
+      .get('https://test.pearl-developer.com/abhivriti/public/api/admin/faq')
       .then((response) => {
         setFaqs(
           response.data.data.map((faq) => ({

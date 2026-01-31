@@ -18,7 +18,7 @@ const EnterpriseFeatures = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("https://server1.pearl-developer.com/abhivriti/public/api/admin/enterpriseFeature");
+      const response = await axios.get("https://test.pearl-developer.com/abhivriti/public/api/admin/enterpriseFeature");
       setData(response.data.data || []);
     } catch (error) {
       setError("Error fetching data.");

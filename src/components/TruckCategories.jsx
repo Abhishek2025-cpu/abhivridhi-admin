@@ -9,7 +9,7 @@ const TruckCategories = () => {
     useEffect(() => {
         const fetchTruckCategories = async (retryCount = 0) => {
             try {
-                const response = await axios.get('https://server1.pearl-developer.com/abhivriti/public/api/admin/truckCategories');
+                const response = await axios.get('https://test.pearl-developer.com/abhivriti/public/api/admin/truckCategories');
                 setTruckCategories(response.data.data);
             } catch (err) {
                 if (err.response && err.response.status === 429 && retryCount < 5) {

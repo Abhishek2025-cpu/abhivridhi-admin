@@ -11,7 +11,7 @@ const InsuranceFAQ = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("https://server1.pearl-developer.com/abhivriti/public/api/admin/insurance-faq");
+        const response = await axios.get("https://test.pearl-developer.com/abhivriti/public/api/admin/insurance-faq");
         console.log("API response:", response);
 
         const faqData = response.data.data || [];

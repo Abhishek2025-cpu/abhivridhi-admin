@@ -2,7 +2,7 @@ import React, { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
 import './SupportManager.css';
 
-const API_BASE = 'https://server1.pearl-developer.com/abhivriti/public/api';
+const API_BASE = 'https://test.pearl-developer.com/abhivriti/public/api';
 
 const Support = () => {
   const [supportList, setSupportList] = useState([]);

@@ -13,7 +13,7 @@ const FAQs = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("https://server1.pearl-developer.com/abhivriti/public/api/admin/faq");
+        const response = await axios.get("https://test.pearl-developer.com/abhivriti/public/api/admin/faq");
         console.log("API response:", response);
 
         const faqs = response.data.data || [];

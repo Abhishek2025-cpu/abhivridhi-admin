@@ -10,7 +10,7 @@ const ShippingList = () => {
   const [statusFilter, setStatusFilter] = useState('All');
 
   useEffect(() => {
-    axios.get('https://server1.pearl-developer.com/abhivriti/public/api/app/get_shipping')
+    axios.get('https://test.pearl-developer.com/abhivriti/public/api/app/get_shipping')
       .then(response => {
         const data = response.data.data || [];
         setShippingData(data);

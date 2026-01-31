@@ -23,7 +23,7 @@ const DriverTable = () => {
     setLoading(true);
     try {
       const response = await axios.get(
-        "https://server1.pearl-developer.com/abhivriti/public/api/app/get_driver"
+        "https://test.pearl-developer.com/abhivriti/public/api/app/get_driver"
       );
       setDrivers(response.data.drivers);
     } catch (error) {

@@ -15,7 +15,7 @@ const Clients = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("https://server1.pearl-developer.com/abhivriti/public/api/admin/client");
+        const response = await axios.get("https://test.pearl-developer.com/abhivriti/public/api/admin/client");
         setData(response.data?.data || []);
       } catch (error) {
         setError("Error fetching data.");
