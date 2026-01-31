@@ -8,13 +8,14 @@ import {
   FaBuilding, FaNewspaper, FaBloggerB, FaStore, FaQuestionCircle,
   FaShieldAlt, FaHandsHelping, FaClipboard, FaExclamationTriangle,
   FaImage, FaArrowLeft, FaTags, FaUndo, FaGavel, FaCogs, FaUser,
-  FaSignOutAlt
+  FaSignOutAlt,FaPlusCircle 
 } from "react-icons/fa";
 import logo from "../img/unnamed.png";
 
 const menuItems = [
   { path: "/Dashboard", label: "Dashboard", icon: <FaTachometerAlt /> },
   { path: "/ops-dashboard", label: "Ops & Resolution", icon: <FaCogs /> },
+   { path: "/add-banner", label: "Add Banner", icon: <FaPlusCircle /> }, 
   { path: "/marketing-coupons", label: "Marketing & Coupons", icon: <FaTags /> },
   { path: "/delivery-failures", label: "Delivery Failures", icon: <FaUndo /> },
   { path: "/rider-disputes", label: "Rider Disputes", icon: <FaGavel /> },

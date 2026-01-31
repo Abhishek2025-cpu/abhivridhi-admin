@@ -1,6 +1,6 @@
 import axios from "axios";
+import API_URL from "./API_URL";
 
-const API_URL = "https://test.pearl-developer.com/abhivriti/public/api";
 
 // Helper to get headers with the correct 'adminToken'
 const getAuthHeaders = () => {
@@ -107,3 +107,5 @@ export const deleteUserMessage = async (id) => {
         throw error.response?.data || { status: false, message: "Error deleting message" };
     }
 };
+
+

@@ -25,7 +25,6 @@ import InsuranceFAQ from './InsuranceFAQ';
 import Support from './Support';
 import Policy from './Policy';
 import ZeroTolerancePolicy from './ZeroTolerancePolicy';
-import Banners from './Banners';
 import DeliveryPartners from './DeliveryPartners';
 import EditFAQ from './EditFAQ';
 import Login from './login';
@@ -38,6 +37,7 @@ import MarketingCoupons from './MarketingCoupons/MarketingCoupons';
 import DeliveryFailures from './DeliveryFailures/DeliveryFailures';
 import RiderDisputes from './RiderDisputes/RiderDisputes';
 import Profile from './Profile/Profile';
+import AddBanner from './AddBanner';
 
 const SidebarLayout = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -86,7 +86,7 @@ const SidebarLayout = () => {
                       <Route path="/Support" element={<Support />} />
                       <Route path="/Policy" element={<Policy />} />
                       <Route path="/ZeroTolerancePolicy" element={<ZeroTolerancePolicy />} />
-                      <Route path="/Banners" element={<Banners />} />
+                      <Route path="/add-banner" element={<AddBanner/>} />
                       <Route path="/profile" element={<Profile />} />
                       <Route path="/ops-dashboard" element={<OpsDashboard />} />
                       <Route path="/marketing-coupons" element={<MarketingCoupons />} />
